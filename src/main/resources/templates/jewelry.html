@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry DB</title>
+    
+</head>
+<body>
+
+
+    <a href="/">Main</a>
+    <a href="/jewelry">Jewelry</a>
+
+
+<div class="container">
+    <h1>Jewelry</h1>
+        <form th:action="@{/jewelry/search}" method="get">
+        <label for="price">Search by Price:</label>
+        <input type="number" id="price" name="price">
+        <button type="submit">Search</button>
+    	</form>
+    <table>
+        <thead>
+            <tr>
+                <th>Size</th>
+                <th>Price</th>
+                <th>Type</th>
+                <th>Metal</th>
+                <th>Stone</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="jewel: ${jewelry}">
+            	<td th:text="${jewel.id}">ID</td>
+                <td th:text="${jewel.size}">Size</td>
+                <td th:text="${jewel.price}">Price</td>
+                <td th:text="${jewel.type}">Type</td>
+                <td th:text="${jewel.metal}">Metal</td>
+                <td th:text="${jewel.stone}">Stone</td>
+                <td><a th:href="@{/jewelry/{id}/edit(id=${jewel.id})}">Edit</a></td>
+                <td><a th:href="@{/jewelry/{id}(id=${jewel.id})}">View</a></td>
+                <td>
+                    <form th:action="@{/jewelry/{id}/delete(id=${jewel.id})}" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/jewelry/add"> Add </a>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry DB</title>
+    
+</head>
+<body>
+
+
+    <a href="/">Main</a>
+    <a href="/jewelry">Jewelry</a>
+
+
+<div class="container">
+    <h1>Jewel</h1>
+    
+    <div th:if="${jewel}">
+    	<p><strong>ID:</strong> <span th:text="${jewel.id}"></span></p>
+        <p><strong>Size:</strong> <span th:text="${jewel.size}"></span></p>
+        <p><strong>Price:</strong> <span th:text="${jewel.price}"></span></p>
+        <p><strong>Type:</strong> <span th:text="${jewel.type}"></span></p>
+        <p><strong>Metal:</strong> <span th:text="${jewel.metal}"></span></p>
+        <p><strong>Stone:</strong> <span th:text="${jewel.stone}"></span></p>
+        <td><a th:href="@{/jewelry/{id}/edit(id=${jewel.id})}">Edit</a></td>
+        <td><a th:href="@{/jewelry/{id}(id=${jewel.id})}">View</a></td>
+        <td>
+            <form th:action="@{/jewelry/{id}/delete(id=${jewel.id})}" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </div>
+    <div th:unless="${jewel}">
+        <p>No such jewel.</p>
+    </div>
+</div>
+
+</body>
+</html>

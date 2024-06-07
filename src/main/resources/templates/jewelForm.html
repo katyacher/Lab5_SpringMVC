@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewel DB</title>
+    
+</head>
+<body>
+
+    <a href="/">Main</a>
+    <a href="/jewel">Jewelry</a>
+
+<div class="container">
+    <h1 th:if="${jewel} ? 'Edit Jewel' : 'Add Jewel'">Add/Edit Jewel</h1>
+    
+    <div th:if="${failReason}" style="color: red;">
+        <p th:text="${failReason}">Failed to save jewel. Please check the form.</p>
+    </div>
+    
+    <form th:if="${jewel}" th:action="@{'/jewelry/' + ${jewel.id}}" method="post">
+        <label for="size">Size:</label>
+        <input type="number" id="size" name="size" th:value="${jewel.size}" required>
+        <br>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" th:value="${jewel.price}" required>
+        <br>
+        <label for="type">Type:</label>
+        <input type="text" id="type" name="type" th:value="${jewel.color}" required>
+        <br>
+        <label for="metal">Metal:</label>
+        <input type="text" id="metal" name="metal" th:value="${jewel.metal}" required>
+        <br>
+        <label for="stone">Stone:</label>
+        <input type="text" id="stone" name="stone" th:value="${jewel.stone}" required>
+        <br>
+        <input type="submit" value="Save">
+    </form>
+    
+    <form th:unless="${jewel}" th:action="@{/jewelry}" method="post">
+        <label for="size">Size:</label>
+        <input type="number" id="size" name="size" required>
+        <br>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required>
+        <br>
+        <label for="type">Type:</label>
+        <input type="text" id="type" name="type" required>
+        <br>
+        <label for="metal">Metal:</label>
+        <input type="text" id="metal" name="metal" required>
+        <br>
+        <label for="stone">Stone:</label>
+        <input type="text" id="stone" name="stone" required>
+        <br>
+        <input type="submit" value="Save">
+    </form>
+</div>
+
+
+</body>
+</html>
