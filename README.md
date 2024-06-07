@@ -29,9 +29,10 @@
   - psql -f test_db.sql -U postgres  
   - psql -d test_db -U postgres
  
- 2. Выполнить команду 
+ 2. Выполнить команды 
+ 	mvn package
  
-	 java -jar spring-app-1.0-SNAPSHOT-jar-with-dependencies.jar
+	java -jar ./target/spring-app-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 
       
